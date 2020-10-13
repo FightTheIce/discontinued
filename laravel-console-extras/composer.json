@@ -1,0 +1,24 @@
+{
+    "name": "fighttheice/laravel-console-extras",
+    "description": "Laravel Console Extras",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "William Knauss",
+            "email": "william.knauss@kingdom.com"
+        }
+    ],
+    "require": {
+        "illuminate/console": "^5.8",
+        "illuminate/container": "^5.8",
+        "illuminate/events": "^5.8",
+        "illuminate/support": "^5.8",
+        "symfony/event-dispatcher": "^4.2",
+        "ramsey/uuid": "^3.8",
+        "symfony/lock": "^4.2"
+    },
+    "autoload": {
+        "classmap": ["app"]
+    }
+}

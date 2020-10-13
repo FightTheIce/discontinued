@@ -1,0 +1,12 @@
+{
+	"description" : "Dependencies for CodeIgniter's testing environment",
+	"name" : "ellislab/codeigniter",
+	"require": {
+		"php": ">=5.2.4",
+        "illuminate/routing": "v4.1.23",
+        "illuminate/events": "v4.1.23"
+	},
+    "autoload": {
+        "classmap": ["application","system"]
+    }
+}

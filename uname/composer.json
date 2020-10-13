@@ -1,0 +1,16 @@
+{
+    "name": "fighttheice/uname",
+    "description": "Uname",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "William Knauss",
+            "email": "william.knauss@kingdom.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": ["src"]
+    }
+}

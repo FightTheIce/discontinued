@@ -1,0 +1,15 @@
+{
+    "name": "fighttheice/tribe",
+    "description": "Use PHP to Generate Apache Virtual Host Configuration Files",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "William Knauss",
+            "email": "william.knauss@kingdom.com"
+        }
+    ],
+    "autoload": {
+        "classmap": ["src"]
+    }
+}
