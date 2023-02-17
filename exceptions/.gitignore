@@ -1,0 +1,10 @@
+/vendor/
+.phpunit.results.cache
+phpunit.xml.bak
+test.php
+.phpunit.result.cache
+/html/
+php.save
+.DS_Store
+blah.txt
+.php_cs.cache

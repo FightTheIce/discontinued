@@ -1,0 +1,369 @@
+<?php
+//exit;
+
+include 'vendor/autoload.php';
+
+$namespace = 'FightTheIce\Exceptions';
+
+$comment =
+    '
+/**
+ * Fight The Ice {exception} Exception.
+ *
+ * {desc}
+ *
+ * @see       {url}
+ *
+ * @license   MIT
+ */
+';
+
+$customClasses = array(
+    'FileSystem\FileNotFoundException'         => array(
+        'extends' => 'ErrorException',
+    ),
+    'Programming\ConstructAlreadyRunException' => array(
+        'extends' => 'BadMethodCallException',
+    ),
+);
+
+$standardclasses = array(
+    //SPL exceptions
+    'SPL\BadFunctionCallException' => array(
+        'url'  => 'https://www.php.net/manual/en/class.badfunctioncallexception.php',
+        'desc' => 'Exception thrown if a callback refers to an undefined function or if some arguments are missing.',
+    ),
+    'SPL\BadMethodCallException'   => array(
+        'url'  => 'https://www.php.net/manual/en/class.badmethodcallexception.php',
+        'desc' => 'Exception thrown if a callback refers to an undefined method or if some arguments are missing.',
+    ),
+    'SPL\DomainException'          => array(
+        'url'  => 'https://www.php.net/manual/en/class.domainexception.php',
+        'desc' => 'Exception thrown if a value does not adhere to a defined valid data domain.',
+    ),
+    'SPL\InvalidArgumentException' => array(
+        'url'  => 'https://www.php.net/manual/en/class.invalidargumentexception.php',
+        'desc' => 'Exception thrown if an argument is not of the expected type.',
+    ),
+    'SPL\LengthException'          => array(
+        'url'  => 'https://www.php.net/manual/en/class.lengthexception.php',
+        'desc' => 'Exception thrown if a length is invalid.',
+    ),
+    'SPL\LogicException'           => array(
+        'url'  => 'https://www.php.net/manual/en/class.logicexception.php',
+        'desc' => 'Exception that represents error in the program logic. This kind of exception should lead directly to a fix in your code.',
+    ),
+    'SPL\OutOfBoundsException'     => array(
+        'url'  => 'https://www.php.net/manual/en/class.outofboundsexception.php',
+        'desc' => 'Exception thrown if a value is not a valid key. This represents errors that cannot be detected at compile time.',
+    ),
+    'SPL\OutOfRangeException'      => array(
+        'url'  => 'https://www.php.net/manual/en/class.outofrangeexception.php',
+        'desc' => 'Exception thrown when an illegal index was requested. This represents errors that should be detected at compile time.',
+    ),
+    'SPL\OverflowException'        => array(
+        'url'  => 'https://www.php.net/manual/en/class.overflowexception.php',
+        'desc' => 'Exception thrown when adding an element to a full container.',
+    ),
+    'SPL\RangeException'           => array(
+        'url'  => 'https://www.php.net/manual/en/class.rangeexception.php',
+        'desc' => 'Exception thrown to indicate range errors during program execution. Normally this means there was an arithmetic error other than under/overflow. This is the runtime version of DomainException.',
+    ),
+    'SPL\RuntimeException'         => array(
+        'url'  => 'https://www.php.net/manual/en/class.runtimeexception.php',
+        'desc' => 'Exception thrown if an error which can only be found on runtime occurs.',
+    ),
+    'SPL\UnderflowException'       => array(
+        'url'  => 'https://www.php.net/manual/en/class.underflowexception.php',
+        'desc' => 'Exception thrown when performing an invalid operation on an empty container, such as removing an element.',
+    ),
+    'SPL\UnexpectedValueException' => array(
+        'url'  => 'https://www.php.net/manual/en/class.runtimeexception.php',
+        'desc' => 'Exception thrown if an error which can only be found on runtime occurs.',
+    ),
+
+    //base exceptions
+    'Exception'                    => array(
+        'url'  => 'https://www.php.net/manual/en/class.exception.php',
+        'desc' => 'Exception is the base class for all Exceptions in PHP 5, and the base class for all user exceptions in PHP 7.',
+    ),
+    'ErrorException'               => array(
+        'url'  => 'https://www.php.net/manual/en/class.errorexception.php',
+        'desc' => 'An Error Exception.',
+    ),
+    'Error'                        => array(
+        'url'  => 'https://www.php.net/manual/en/class.error.php',
+        'desc' => 'Error is the base class for all internal PHP errors.',
+    ),
+    'ArgumentCountError'           => array(
+        'url'  => 'https://www.php.net/manual/en/class.argumentcounterror.php',
+        'desc' => 'ArgumentCountError is thrown when too few arguments are passed to a user-defined function or method.',
+    ),
+    'ArithmeticError'              => array(
+        'url'  => 'https://www.php.net/manual/en/class.arithmeticerror.php',
+        'desc' => 'ArithmeticError is thrown when an error occurs while performing mathematical operations. In PHP 7.0, these errors include attempting to perform a bitshift by a negative amount, and any call to intdiv() that would result in a value outside the possible bounds of an integer.',
+    ),
+    'AssertionError'               => array(
+        'url'  => 'https://www.php.net/manual/en/class.assertionerror.php',
+        'desc' => 'AssertionError is thrown when an assertion made via assert() fails.',
+    ),
+    'DivisionByZeroError'          => array(
+        'url'  => 'https://www.php.net/manual/en/class.divisionbyzeroerror.php',
+        'desc' => 'DivisionByZeroError is thrown when an attempt is made to divide a number by zero.',
+    ),
+    'CompileError'                 => array(
+        'url'  => 'https://www.php.net/manual/en/class.compileerror.php',
+        'desc' => 'CompileError is thrown for some compilation errors, which formerly issued a fatal error.',
+    ),
+    'ParseError'                   => array(
+        'url'  => 'https://www.php.net/manual/en/class.parseerror.php',
+        'desc' => 'ParseError is thrown when an error occurs while parsing PHP code, such as when eval() is called.',
+    ),
+    'TypeError'                    => array(
+        'url'  => 'https://www.php.net/manual/en/class.typeerror.php',
+        'desc' => 'There are three scenarios where a TypeError may be thrown. The first is where the argument type being passed to a function does not match its corresponding declared parameter type. The second is where a value being returned from a function does not match the declared function return type. The third is where an invalid number of arguments are passed to a built-in PHP function (strict mode only).',
+    ),
+);
+
+######END OF MODIFIABLE CONTENT#######END OF MODIFIABLE CONTENT#######END OF MODIFIABLE CONTENT#######END OF MODIFIABLE CONTENT#
+//does the src folder exists?
+if (!file_exists('src')) {
+    mkdir('src');
+}
+
+//does the tests folder exists?
+if (!file_exists('tests')) {
+    mkdir('tests');
+}
+
+//paths
+$paths = array();
+
+//classes
+$classes = array();
+
+//interface
+$interface = new Laminas\Code\Generator\InterfaceGenerator(
+    'ExceptionsInterface', // name
+    $namespace, // namespace
+    null, // flags
+    null, // extends
+    array(), // interfaces
+    array(), // properties
+);
+
+$method = new Laminas\Code\Generator\MethodGenerator('getComponentName');
+$interface->addMethodFromGenerator($method);
+
+$method = new Laminas\Code\Generator\MethodGenerator('setComponentName',array('component'));
+$interface->addMethodFromGenerator($method);
+
+$path    = 'src' . DIRECTORY_SEPARATOR . 'ExceptionsInterface.php';
+$paths[] = $path;
+file_put_contents($path, '<?php' . PHP_EOL . PHP_EOL . $interface->generate());
+
+//trait
+$trait = new Laminas\Code\Generator\TraitGenerator(
+    'ComponentExceptionTrait', // name
+    $namespace, // namespace
+    null, // flags
+    null, // extends
+    array(), // interfaces
+    array(), // properties
+);
+$trait->addProperty('componentName', 'UNKNOWN', Laminas\Code\Generator\PropertyGenerator::FLAG_PROTECTED);
+
+$method = new Laminas\Code\Generator\MethodGenerator('getComponentName');
+$method->setBody('return $this->componentName;');
+$trait->addMethodFromGenerator($method);
+
+$method = new Laminas\Code\Generator\MethodGenerator('setComponentName',array('component'));
+$method->setBody('$this->componentName = $component;');
+$trait->addMethodFromGenerator($method);
+
+$path    = 'src' . DIRECTORY_SEPARATOR . 'ComponentExceptionTrait.php';
+$paths[] = $path;
+file_put_contents($path, '<?php' . PHP_EOL . PHP_EOL . $trait->generate());
+
+//standard classes
+foreach ($standardclasses as $name => $data) {
+    $x         = explode('\\', $name);
+    $classname = end($x);
+    $first     = $x[0];
+    if ($classname == $first) {
+        $first = 'Base';
+    }
+
+    if (count($x) > 1) {
+        array_pop($x);
+
+        $basePath = 'src';
+        foreach ($x as $segment) {
+            $basePath = $basePath . DIRECTORY_SEPARATOR . $segment;
+
+            //does this path exists?
+            if (!file_exists($basePath)) {
+                mkdir($basePath);
+            }
+        }
+    }
+
+    $class = new Laminas\Code\Generator\ClassGenerator(
+        $classname, // name
+        $namespace, // namespace
+        null, // flags
+        trim($first . $classname), // extends
+        array(), // interfaces
+        array(), // properties
+    );
+
+    $class->addUse($classname, trim($first . $classname));
+    $class->addUse($namespace . '\\ExceptionsInterface');
+    $class->addTrait('ComponentExceptionTrait');
+    $class->setImplementedInterfaces(array($namespace . '\\ExceptionsInterface'));
+
+    $content = '<?php' . PHP_EOL . $comment;
+    $content = str_replace('{exception}', $classname, $content);
+    $content = str_replace('{desc}', $data['desc'], $content);
+    $content = str_replace('{url}', $data['url'], $content);
+
+    $generate = $class->generate();
+    $generate = str_replace('use ' . $namespace . '\\ExceptionsInterface;' . PHP_EOL, '', $generate);
+
+    $content = $content . PHP_EOL . $generate;
+    $path    = 'src' . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';
+
+    $paths[]   = $path;
+    $classes[] = $namespace . '\\' . $classname;
+
+    file_put_contents($path, $content);
+}
+
+//custom classes
+if (isset($customClasses)) {
+    foreach ($customClasses as $name => $data) {
+        $x         = explode('\\', $name);
+        $className = end($x);
+        if (count($x) > 1) {
+            $file = end($x);
+            unset($x[count($x) - 1]);
+
+            $basePath = 'src';
+            foreach ($x as $path) {
+                $basePath = $basePath . DIRECTORY_SEPARATOR . $path;
+                if (!file_exists($basePath)) {
+                    mkdir($basePath);
+                }
+            }
+        }
+
+        $realClassName = $namespace . '\\' . $name;
+        $extends       = null;
+        if (isset($data['extends'])) {
+            $extends = $namespace . '\\' . str_replace($namespace . '\\', '', $data['extends']);
+        }
+
+        $class = new Laminas\Code\Generator\ClassGenerator(
+            $realClassName, // name
+            null, // namespace
+            null, // flags
+            $extends, // extends
+            array(), // interfaces
+            array(), // properties
+        );
+        $class->addUse($namespace . '\\' . $data['extends']);
+        $class->addUse($namespace . '\\ExceptionsInterface');
+        $class->addUse($namespace . '\\ComponentExceptionTrait');
+        $class->addTrait('ComponentExceptionTrait');
+        $class->setImplementedInterfaces(array($namespace . '\\ExceptionsInterface'));
+
+        $contents = '<?php' . PHP_EOL . PHP_EOL . $class->generate();
+
+        $path = 'src' . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';
+
+        file_put_contents($path, $contents);
+
+        $paths[]   = $path;
+        $classes[] = $realClassName;
+    }
+}
+
+foreach ($paths as $path) {
+    include $path;
+}
+
+$x     = explode('\\', $namespace);
+$tname = $x[0] . '\\Tests';
+unset($x[0]);
+$tname = $tname . '\\' . implode('\\', $x);
+
+foreach ($classes as $cObjName) {
+    //echo $cObjName . PHP_EOL;
+    $x    = explode('\\', $cObjName);
+    $name = end($x);
+
+    $class = new Laminas\Code\Generator\ClassGenerator(
+        $name . 'Test', // name
+        $tname, // namespace
+        null, // flags
+        'PHPUnit\Framework\TestCase', // extends
+        array(), // interfaces
+        array(), // properties
+    );
+
+    $obj   = new $cObjName('message', 1);
+    $links = getLinks($obj);
+
+    foreach ($links as $link) {
+        $method = new Laminas\Code\Generator\MethodGenerator('test_' . $name . '_' . str_replace('\\', '_', $link));
+        $method->setBody('$this->expectException(\\' . $link . '::class);' . PHP_EOL . 'throw new \\' . $cObjName . '("' . $link . '->Exception");');
+
+        $class->addMethodFromGenerator($method);
+    }
+
+    $method = new Laminas\Code\Generator\MethodGenerator('test_' . $name . '_getComponentName');
+    $body   = '$exception = new \\' . $cObjName . ';' . PHP_EOL;
+    $body   = $body . '$component = $exception->getComponentName();' . PHP_EOL;
+    $body   = $body . '$this->assertIsString($component);' . PHP_EOL;
+    $body   = $body . '$this->assertEquals($component, \'UNKNOWN\');' . PHP_EOL;
+    $method->setBody($body);
+    $class->addMethodFromGenerator($method);
+
+    $method = new Laminas\Code\Generator\MethodGenerator('test_' . $name . '_BaseException');
+    $body   = "\$this->expectException(\\" . $cObjName . "::class,'Custom Message',1);";
+    $body   = $body . PHP_EOL . "throw new \\" . $cObjName . "('Custom Message',1);";
+    $method->setBody($body);
+    $class->addMethodFromGenerator($method);
+
+    $method = new Laminas\Code\Generator\MethodGenerator('test_' . $name . '_setComponentName');
+    $body = '$componentName = "PHPUNIT";'.PHP_EOL;
+    $body = $body.'$exception = new \\'.$cObjName.';'.PHP_EOL;
+    $body = $body.'$exception->setComponentName($componentName);'.PHP_EOL;
+    $body = $body.'$nameCheck = $exception->getComponentName();'.PHP_EOL;
+    $body = $body.PHP_EOL;
+    $body = $body.'$this->assertEquals($componentName, $nameCheck);' . PHP_EOL;
+    $method->setBody($body);
+    $class->addMethodFromGenerator($method);
+
+    file_put_contents('tests' . DIRECTORY_SEPARATOR . $name . 'Test.php', '<?php' . PHP_EOL . '/*' . PHP_EOL . print_r($links, true) . '*/' . PHP_EOL . $class->generate());
+}
+
+function getlinks($class) {
+    $children   = array();
+    $children[] = get_class($class);
+    $parents    = class_parents($class);
+    foreach ($parents as $name => $blah) {
+        $children[] = $name;
+    }
+
+    $interfaces = class_implements($class);
+    foreach ($interfaces as $name => $blah) {
+        if ($name == 'Throwable') {
+            continue;
+        }
+
+        $children[] = $name;
+    }
+
+    return $children;
+}

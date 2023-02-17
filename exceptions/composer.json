@@ -1,0 +1,21 @@
+{
+  "name": "fighttheice/exceptions",
+  "description": "Exceptions shared across Fight The Ice components.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "William Knauss",
+      "email": "william.knauss@kingdom.com"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+    "laminas/laminas-code": "^3.4",
+    "phpunit/phpunit": "^9.4",
+    "vimeo/psalm": "^4.1"
+  },
+  "autoload": {
+    "classmap": ["src"]
+  }
+}
