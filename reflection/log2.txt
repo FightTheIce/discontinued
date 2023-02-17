@@ -1,0 +1,75 @@
+Array
+(
+    [0] => Array
+        (
+            [class] => ArithmeticError
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+    [1] => Array
+        (
+            [class] => AssertionError
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+    [2] => Array
+        (
+            [class] => DivisionByZeroError
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+    [3] => Array
+        (
+            [class] => Error
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+    [4] => Array
+        (
+            [class] => JsonException
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+    [5] => Array
+        (
+            [class] => Normalizer
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+    [6] => Array
+        (
+            [class] => ParseError
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+    [7] => Array
+        (
+            [class] => SessionUpdateTimestampHandlerInterface
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+    [8] => Array
+        (
+            [class] => TypeError
+            [error] => 1
+            [exception] => X-1
+            [path] => 
+        )
+
+)
